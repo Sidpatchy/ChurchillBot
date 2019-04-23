@@ -42,7 +42,7 @@ async def help(ctx):
     embed.add_field(name='!pleasecanihastenk', value='Gives the user a tenk since they asked so nicely', inline=False)
     embed.add_field(name='!moretanks', value='Fetches more tanks for the war effort', inline=False)
     embed.add_field(name='!democracy', value='States what Churchill thought about democracy (A message from the author: What he said is fact, anyone who says otherwise can bugger off)')
-    embed.add_field(name='fightwhere', value='Says where we will fight', inline=False)
+    embed.add_field(name='!fightwhere', value='Says where we will fight', inline=False)
     await bot.send_message(author, embed=embed)
     print('--------------------------')
     print('Current Time:', currentDT)

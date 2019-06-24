@@ -19,7 +19,7 @@ bot.remove_command('help')                  # Removes the default help command
 @bot.event
 async def on_ready():
     endTime = DT.datetime.now()
-    await bot.change_presence(game=discord.Game(name='Pwning Hitler'))   # Sets the bot's presence
+    await bot.change_presence(activity=discord.Game(name='Pwning Hitler'))   # Sets the bot's presence
     print('--------------------------')
     timeToLoad = endTime - startTime
     currentDT = DT.datetime.now()               # Gets current time
@@ -43,7 +43,7 @@ async def help(ctx):
     embed.add_field(name='!moretanks', value='Fetches more tanks for the war effort', inline=False)
     embed.add_field(name='!democracy', value='States what Churchill thought about democracy (A message from the author: What he said is fact, anyone who says otherwise can bugger off)')
     embed.add_field(name='!fightwhere', value='Says where we will fight', inline=False)
-    await bot.send_message(author, embed=embed)
+    await author.send(embed=embed)
     print('--------------------------')
     print('Current Time:', currentDT)
     print('Help has been run')
@@ -54,7 +54,7 @@ async def help(ctx):
 async def info(ctx):
     currentDT = DT.datetime.now()
     print(' ')
-    await bot.say('Rainverm38 noticed that the choices for bots dedicated to former British Prime Minister Winston Churchill was empty.') 
+    await ctx.send('Rainverm38 noticed that the choices for bots dedicated to former British Prime Minister Winston Churchill was empty.') 
     print('--------------------------')
     print('Current Time:', currentDT)
     print('info has been run')
@@ -64,7 +64,7 @@ async def info(ctx):
 @bot.command(pass_context=True)
 async def canihastenk(ctx):
     currentDT = DT.datetime.now()
-    await bot.say('No, say please and maybe my answer will change')
+    await ctx.send('No, say please and maybe my answer will change')
     print('')
     print('--------------------------')
     print('Current Time:', currentDT)
@@ -75,8 +75,8 @@ async def canihastenk(ctx):
 @bot.command(pass_context=True)
 async def pleasecanihastenk(ctx):
     currentDT = DT.datetime.now()
-    await bot.say('Thank you for asking so nicely, yes you may has tenk.')
-    await bot.say('https://i.imgur.com/a9GfFqO.jpg')
+    await ctx.send('Thank you for asking so nicely, yes you may has tenk.')
+    await ctx.send('https://i.imgur.com/a9GfFqO.jpg')
     print('')
     print('--------------------------')
     print('Current Time:', currentDT)
@@ -87,8 +87,8 @@ async def pleasecanihastenk(ctx):
 @bot.command(pass_context=True)
 async def moretanks(ctx):
     currentDT = DT.datetime.now()
-    await bot.say('Getting more tanks stat!')
-    await bot.say('https://media.giphy.com/media/VFZR04kiwRtbZcMjAH/giphy.gif')
+    await ctx.send('Getting more tanks stat!')
+    await ctx.send('https://media.giphy.com/media/VFZR04kiwRtbZcMjAH/giphy.gif')
     print('')
     print('--------------------------')
     print('Current Time:', currentDT)
@@ -99,7 +99,7 @@ async def moretanks(ctx):
 @bot.command(pass_context=True)
 async def democracy(ctx):
     currentDT = DT.datetime.now()
-    await bot.say('Democracy is the worst form of government, except for all the others.')
+    await ctx.send('Democracy is the worst form of government, except for all the others.')
     print('')
     print('--------------------------')
     print('Current Time:', currentDT)
@@ -110,12 +110,12 @@ async def democracy(ctx):
 @bot.command(pass_context=True)
 async def fightwhere(ctx):
     currentDT = DT.datetime.now()
-    await bot.say('WE SHALL FIGHT EVERYWHERE!')
-    await bot.say('(I stole this meme from r/HistoryMemes) https://i.imgur.com/O6n5PV9.jpg')
+    await ctx.send('WE SHALL FIGHT EVERYWHERE!')
+    await ctx.send('(I stole this meme from r/HistoryMemes) https://i.imgur.com/O6n5PV9.jpg')
     print('')
     print('--------------------------')
     print('Current Time:', currentDT)
     print('fightwhere has been run')
     print('--------------------------')
 
-bot.run('TOKEN HERE')         # User defined bot token
+bot.run('INSERT_TOKEN')         # User defined bot token

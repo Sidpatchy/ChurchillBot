@@ -15,23 +15,34 @@ startTime = DT.datetime.now()
 bot = commands.Bot(command_prefix='!')      # In this case the prefix is '!' so before typing a command you type '!' and then 'test'
 bot.remove_command('help')                  # Removes the default help command
 
+# Handles what needs to be printed in the console
+def consoleOutput(commandName, commandTime):    # Defines consoleOutput()
+    startTime = commandTime                     # (laziness) passing startTime from the beginning of the command into the function
+    timeToRun = DT.datetime.now() - startTime   # Does the calculation for how long it took the command to run
+    print('')                                   # Adds a space in the console so everything looks far better
+    print('-------ChurchillBot-------')         # Divider to make console readable
+    print('Time to Run:', timeToRun)            # Prints how long it took the bot to run the command
+    print('Current Time:', DT.datetime.now())   # Prints time command was run in the console, from the variable 'currentDT'
+    print(commandName, 'has been run')          # Prints 'test has been run' in console
+    print('--------------------------')         # Divider to make console readable
+
 # Notify in console when bot is loaded and sets bot currently playing status
 @bot.event
 async def on_ready():
     endTime = DT.datetime.now()
-    await bot.change_presence(activity=discord.Game(name='Pwning Hitler'))   # Sets the bot's presence
-    print('--------------------------')
+    await bot.change_presence(activity=discord.Game(name='Pwning Hitler | !help'))   # Sets the bot's presence
+    print('-------ChurchillBot-------')
     timeToLoad = endTime - startTime
-    currentDT = DT.datetime.now()               # Gets current time
-    print('Time to load:', timeToLoad)          # Prints the time to load
-    print('Current Time:', currentDT)           # Prints current time in console
-    print('Done Loading!')                      # Prints 'Done Loading!' in console
+    currentDT = DT.datetime.now()                                            # Gets current time
+    print('Time to load:', timeToLoad)                                       # Prints the time the bot took to load
+    print('Current Time:', currentDT)                                        # Prints current time in console
+    print('Done Loading!')                                                   # Prints 'Done Loading!' in console
     print('--------------------------')
 
 # Adds a help command that sends a message to the user rather than spamming the chat channel
 @bot.command(pass_context=True)
 async def help(ctx):
-    currentDT = DT.datetime.now()
+    startTime = DT.datetime.now()
     author = ctx.message.author
     embed = discord.Embed(
         color = discord.Color.blue()
@@ -43,79 +54,76 @@ async def help(ctx):
     embed.add_field(name='!moretanks', value='Fetches more tanks for the war effort', inline=False)
     embed.add_field(name='!democracy', value='States what Churchill thought about democracy (A message from the author: What he said is fact, anyone who says otherwise can bugger off)')
     embed.add_field(name='!fightwhere', value='Says where we will fight', inline=False)
+    embed.add_field(name='!birthday', value='States some info about the former Prime Minister\'s birthday')
     await author.send(embed=embed)
-    print('--------------------------')
-    print('Current Time:', currentDT)
-    print('Help has been run')
-    print('--------------------------')
+    consoleOutput('help', startTime)
 
 # 'Info' command
 @bot.command(pass_context=True)
 async def info(ctx):
-    currentDT = DT.datetime.now()
-    print(' ')
-    await ctx.send('Rainverm38 noticed that the choices for bots dedicated to former British Prime Minister Winston Churchill was empty.') 
-    print('--------------------------')
-    print('Current Time:', currentDT)
-    print('info has been run')
-    print('--------------------------')
+    startTime = DT.datetime.now()
+    await ctx.send('Rainverm38 noticed that the market for bots dedicated to former British Prime Minister Winston Churchill was empty.') 
+    consoleOutput('info', startTime)
 
 # 'Can I has Tenk' command
 @bot.command(pass_context=True)
 async def canihastenk(ctx):
-    currentDT = DT.datetime.now()
+    startTime = DT.datetime.now()
     await ctx.send('No, say please and maybe my answer will change')
-    print('')
-    print('--------------------------')
-    print('Current Time:', currentDT)
-    print('canihastenk has been run')
-    print('--------------------------')
+    consoleOutput('canihadtenk', startTime)
 
 # 'Please Can I has Tenk' command
 @bot.command(pass_context=True)
 async def pleasecanihastenk(ctx):
-    currentDT = DT.datetime.now()
+    startTime = DT.datetime.now()
     await ctx.send('Thank you for asking so nicely, yes you may has tenk.')
     await ctx.send('https://i.imgur.com/a9GfFqO.jpg')
-    print('')
-    print('--------------------------')
-    print('Current Time:', currentDT)
-    print('pleasecanihastenk has been run')
-    print('--------------------------')
+    consoleOutput('pleasecanihastenk', startTime)
 
 # 'More tanks' command
 @bot.command(pass_context=True)
 async def moretanks(ctx):
-    currentDT = DT.datetime.now()
+    startTime = DT.datetime.now()
     await ctx.send('Getting more tanks stat!')
     await ctx.send('https://media.giphy.com/media/VFZR04kiwRtbZcMjAH/giphy.gif')
-    print('')
-    print('--------------------------')
-    print('Current Time:', currentDT)
-    print('moretanks has been run')
-    print('--------------------------')
+    consoleOutput('moretanks', startTime)
 
 # 'Democracy' command
 @bot.command(pass_context=True)
 async def democracy(ctx):
-    currentDT = DT.datetime.now()
+    startTime = DT.datetime.now()
     await ctx.send('Democracy is the worst form of government, except for all the others.')
-    print('')
-    print('--------------------------')
-    print('Current Time:', currentDT)
-    print('democracy has been run')
-    print('--------------------------')
+    consoleOutput('democracy', startTime)
 
 #  'Fight Where?' command
 @bot.command(pass_context=True)
 async def fightwhere(ctx):
-    currentDT = DT.datetime.now()
+    startTime = DT.datetime.now()
     await ctx.send('WE SHALL FIGHT EVERYWHERE!')
     await ctx.send('(I stole this meme from r/HistoryMemes) https://i.imgur.com/O6n5PV9.jpg')
-    print('')
-    print('--------------------------')
-    print('Current Time:', currentDT)
-    print('fightwhere has been run')
-    print('--------------------------')
+    consoleOutput('fightwhere', startTime)
+
+# Happy Birthday sir Winston Churchill
+@bot.command(pass_context=True)
+async def birthday(ctx):
+    startTime = DT.datetime.now()
+    embed = discord.Embed(
+        color = discord.Color.blue()
+    )
+    year = startTime.year
+    year2 = year
+    time = startTime.replace(year=year, month=11, day=30, hour=0, minute=0, second=0, microsecond=0)
+    if DT.datetime.now() >= time:
+        year = year + 1
+    if DT.datetime.now() <= time:
+        year2 = year2 - 1
+    rainverm38RolemodelBirthday = startTime.replace(year=year, month=11, day=30, hour=0, minute=0, second=0, microsecond=0)
+    age = year2 - 1874
+    timeToBirthday = rainverm38RolemodelBirthday - DT.datetime.now()
+    embed.set_author(name='Winston Churchill Was born on November 30, 1874')
+    embed.add_field(name='He would be:', value=age, inline=False)
+    embed.add_field(name='Less than a year until his birthday:', value=timeToBirthday, inline=False)
+    await ctx.send(embed=embed)
+    consoleOutput('birthday', startTime)
 
 bot.run('INSERT_TOKEN')         # User defined bot token

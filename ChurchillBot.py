@@ -1,5 +1,5 @@
-# ChurchillBot by Rainverm38
-# More info can be found on the GitHub here: https://github.com/Rainverm38/ChurchillBot
+# ChurchillBot by Sidpatchy
+# More info can be found on the GitHub here: https://github.com/Sidpatchy/ChurchillBot
 
 import discord
 from discord.ext import commands
@@ -62,7 +62,7 @@ async def help(ctx):
 @bot.command(pass_context=True)
 async def info(ctx):
     startTime = DT.datetime.now()
-    await ctx.send('Rainverm38 noticed that the market for bots dedicated to former British Prime Minister Winston Churchill was empty.') 
+    await ctx.send('Sidpatchy noticed that the market for bots dedicated to former British Prime Minister Winston Churchill was empty.') 
     consoleOutput('info', startTime)
 
 # 'Can I has Tenk' command
